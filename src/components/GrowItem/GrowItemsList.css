@@ -1,0 +1,6 @@
+.grow-item-list {
+	flex-direction: column;
+}
+.grow-item-list button {
+	display: block;
+}
