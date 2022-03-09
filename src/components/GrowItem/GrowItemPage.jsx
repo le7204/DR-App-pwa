@@ -51,13 +51,13 @@ export default function GrowItemPage() {
     if (state.growItem) {
         let hasUri = state.growItem && state.growItem.thumbnail && state.growItem.thumbnail.url;
         content = (
-            <div style={{ textAlign: "center", paddingTop: "0px" }} className='grow-item-page-inner-container'>
+            <div style={{ textAlign: "center" }} className='grow-item-page-inner-container'>
                 {state.growItem.name && <text style={{ display: "block", fontSize: "x-large", fontStyle: "bold", paddingBottom: "3vh", paddingTop: "2vh" }}>{state.growItem.name}</text>}
-                {hasUri && <img src={state.growItem.thumbnail.url} style={{ width: "60vw" }} />}
+                {hasUri && <img src={state.growItem.thumbnail.url} style={{ width: "80%" }} />}
 
-                {state.growItem.description && <h3 style={{ width: "80vw" }}>{state.growItem.description}</h3>}
+                <div style={{ display: "block" }}>
+                    {state.growItem.description && <h3>{state.growItem.description}</h3>}
 
-                <div style={{ display: "block", width: "80vw", paddingBottom: "3vh" }}>
                     <h2 >Price: ${state.growItem.baseItemPrice}</h2>
                     <button onClick={() => purchaseItem(state.growItem.name)}>Purchase</button>
                 </div>
