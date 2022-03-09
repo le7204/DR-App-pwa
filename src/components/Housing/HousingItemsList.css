@@ -1,53 +1,53 @@
-.grow-item-list {
+.housing-item-list {
 	padding-top: 30px;
 	overflow-y: scroll;
 }
-.grow-item-list button {
+.housing-item-list button {
 	display: inline-block;
 	font-size: large;
 }
 
 /* Mobile Screens */
 @media screen and (max-width: 700px) {
-	.grow-item-list button {
+	.housing-item-list button {
 		width: 50%;
 		height: 23%;
 	}
-	.grow-item-list {
+	.housing-item-list {
 		padding-top: 30px;
 	}
 }
 
 /* Medium Screens */
 @media screen and (min-width: 701px) and (max-width: 1000px) {
-	.grow-item-list button {
+	.housing-item-list button {
 		width: 33%;
 		height: 23%;
 	}
-	.grow-item-list {
+	.housing-item-list {
 		padding-top: 30px;
 	}
 }
 
 /* Large Screens */
 @media screen and (min-width: 1001px) and (max-width: 2000px) {
-	.grow-item-list button {
+	.housing-item-list button {
 		width: 25%;
 		height: 23%;
 	}
-	.grow-item-list {
+	.housing-item-list {
 		padding-top: 30px;
 	}
 }
 
 /* 4K Screens */
 @media screen and (min-width: 2001px) {
-	.grow-item-list button {
+	.housing-item-list button {
 		width: 25%;
 		height: 23%;
 		font-size: x-large;
 	}
-	.grow-item-list {
+	.housing-item-list {
 		padding-top: 30px;
 	}
 }

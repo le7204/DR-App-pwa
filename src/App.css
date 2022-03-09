@@ -1,15 +1,53 @@
-.App {
+.app {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
 }
 .main-screen {
-	background-color: brown;
-}
-div.panel-open {
-	z-index: 9;
-	transition: 800ms;
+	position: absolute;
 	top: 0px;
-	left: 25vw;
-	width: 75vw;
-	position: relative;
+	background-color: brown;
+	z-index: 1;
+	width: 100vw;
+	height: 100vh;
+	overflow-y: scroll;
 }
-div.panel-closed {
+
+/* Mobile Screens */
+@media screen and (max-width: 700px) {
+	div.panel-open {
+		display: none;
+		transition: 500ms;
+	}
+}
+
+/* Medium Screens */
+@media screen and (min-width: 701px) and (max-width: 1000px) {
+	div.panel-open {
+		transition: 500ms;
+		left: 40vw;
+		width: 60vw;
+	}
+}
+
+/* Large Screens */
+@media screen and (min-width: 1001px) and (max-width: 2000px) {
+	div.panel-open {
+		z-index: 1;
+		transition: 500ms;
+		top: 0px;
+		left: 25vw;
+		width: 75vw;
+	}
+}
+
+/* 4K Screens */
+@media screen and (min-width: 2001px) {
+	div.panel-open {
+		z-index: 1;
+		transition: 500ms;
+		top: 0px;
+		left: 22vw;
+		width: 78vw;
+	}
 }
