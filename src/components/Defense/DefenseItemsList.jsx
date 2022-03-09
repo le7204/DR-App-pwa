@@ -45,7 +45,7 @@ const DefenseItemsList = () => {
       {!state.defenseItems && <Loading />}
       {state.defenseItems && state.defenseItems.map((element, i) => {
         // console.log(element)
-        return <button key={"item" + i} onClick={() => navigate(element.name)}>{element.name}</button>;
+        return <button key={"item" + i} onClick={() => navigate(element.name)}><img style={{ height: "50%" }} src={element.thumbnail.url} /><div><text>{element.name}</text></div></button >;
       })
       }
     </div >

@@ -49,7 +49,7 @@ const Sidebar = (props) => {
     ) :
         (
             <div className='sidebar-closed'>
-                <button onClick={props.arrowClick}> {'-->'} </button>;
+                <button onClick={props.arrowClick}> {'-->'} </button>
 
             </div >
         )
