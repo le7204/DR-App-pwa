@@ -36,10 +36,7 @@ const Sidebar = (props) => {
     return (props.open ? (
         <div className='sidebar-open'>
             <button onClick={props.arrowClick}> {'<--'} </button>
-            {/* {state.loaded && state.itemCategories & state.itemCategories.map((category) => {
-                console.log("category:", category);
-                return (<button style={{ width: "100%" }}> {category.name}</button>);
-            })} */}
+
             {state.itemCategories && state.itemCategories.map((element, i) => {
                 console.log(element);
                 return <button key={"category " + i} className='nav-button' onClick={() => nagivate(element.name)} > {element.name}</button>;

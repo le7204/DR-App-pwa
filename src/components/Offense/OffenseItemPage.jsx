@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { gql, GraphQLClient } from 'graphql-request';
 import './OffenseItemPage.css';
+import Loading from '../utility/Loading';
 
 export default function OffenseItemPage() {
     const [state, setState] = useState({});
@@ -41,22 +42,22 @@ export default function OffenseItemPage() {
     const purchaseItem = (item) => {
         console.log("purchase:", item);
     };
-    let content;
+    let content = <Loading />;
 
     if (state.offenseItem) {
         let hasUri = state.offenseItem && state.offenseItem.thumbnail && state.offenseItem.thumbnail.url;
         content = (
             <div style={{ textAlign: "center" }} className='offense-item-page-inner-container'>
-                {state.offenseItem.name && <h1>{state.offenseItem.name}</h1>}
-                {hasUri && <img src={state.offenseItem.thumbnail.url} style={{ width: "60vw" }} />}
+                {state.offenseItem.name && <text style={{ display: "block", fontSize: "x-large", fontStyle: "bold", paddingBottom: "3vh", paddingTop: "2vh" }}>{state.offenseItem.name}</text>}
+                {hasUri && <img src={state.offenseItem.thumbnail.url} style={{ width: "80%" }} />}
 
-                {state.offenseItem.description && <h3 style={{ width: "80vw" }}>{state.offenseItem.description}</h3>}
+                <div style={{ display: "block" }}>
+                    {state.offenseItem.description && <h3>{state.offenseItem.description}</h3>}
 
-                <div style={{ display: "block", width: "80vw" }}>
                     <h2 >Price: ${state.offenseItem.baseItemPrice}</h2>
                     <button onClick={() => purchaseItem(state.offenseItem.name)}>Purchase</button>
                 </div>
-            </div>
+            </div >
         );
     }
 

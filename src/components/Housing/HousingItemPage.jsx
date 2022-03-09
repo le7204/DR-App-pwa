@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { gql, GraphQLClient } from 'graphql-request';
 import './HousingItemPage.css';
+import Loading from '../utility/Loading';
 
 export default function HousingItemPage() {
     const [state, setState] = useState({});
@@ -47,22 +48,22 @@ export default function HousingItemPage() {
     const purchaseItem = (item) => {
         console.log("purchase:", item);
     };
-    let content;
+    let content = <Loading />;
 
     if (state.housingItem) {
         let hasUri = state.housingItem && state.housingItem.thumbnail && state.housingItem.thumbnail.url;
         content = (
             <div style={{ textAlign: "center" }} className='housing-item-page-inner-container'>
-                {state.housingItem.name && <h1>{state.housingItem.name}</h1>}
-                {hasUri && <img src={state.housingItem.thumbnail.url} style={{ width: "60vw" }} />}
+                {state.housingItem.name && <text style={{ display: "block", fontSize: "x-large", fontStyle: "bold", paddingBottom: "3vh", paddingTop: "2vh" }}>{state.housingItem.name}</text>}
+                {hasUri && <img src={state.housingItem.thumbnail.url} style={{ width: "80%" }} />}
 
-                {state.housingItem.description && <h3 style={{ width: "80vw" }}>{state.housingItem.description}</h3>}
+                <div style={{ display: "block" }}>
+                    {state.housingItem.description && <h3>{state.housingItem.description}</h3>}
 
-                <div style={{ display: "block", width: "80vw" }}>
                     <h2 >Price: ${state.housingItem.baseItemPrice}</h2>
                     <button onClick={() => purchaseItem(state.housingItem.name)}>Purchase</button>
                 </div>
-            </div>
+            </div >
         );
     }
 

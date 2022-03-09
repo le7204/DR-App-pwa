@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { gql, GraphQLClient } from 'graphql-request';
 import './PrestigeItemPage.css';
+import Loading from '../utility/Loading';
 
 export default function PrestigeItemPage() {
     const [state, setState] = useState({});
@@ -45,22 +46,22 @@ export default function PrestigeItemPage() {
     const purchaseItem = (item) => {
         console.log("purchase:", item);
     };
-    let content;
+    let content = <Loading />;
 
     if (state.prestigeItem) {
         let hasUri = state.prestigeItem && state.prestigeItem.thumbnail && state.prestigeItem.thumbnail.url;
         content = (
             <div style={{ textAlign: "center" }} className='prestige-item-page-inner-container'>
-                {state.prestigeItem.name && <h1>{state.prestigeItem.name}</h1>}
-                {hasUri && <img src={state.prestigeItem.thumbnail.url} style={{ width: "60vw" }} />}
+                {state.prestigeItem.name && <text style={{ display: "block", fontSize: "x-large", fontStyle: "bold", paddingBottom: "3vh", paddingTop: "2vh" }}>{state.prestigeItem.name}</text>}
+                {hasUri && <img src={state.prestigeItem.thumbnail.url} style={{ width: "80%" }} />}
 
-                {state.prestigeItem.description && <h3 style={{ width: "80vw" }}>{state.prestigeItem.description}</h3>}
+                <div style={{ display: "block" }}>
+                    {state.prestigeItem.description && <h3>{state.prestigeItem.description}</h3>}
 
-                <div style={{ display: "block", width: "80vw" }}>
                     <h2 >Price: ${state.prestigeItem.baseItemPrice}</h2>
                     <button onClick={() => purchaseItem(state.prestigeItem.name)}>Purchase</button>
                 </div>
-            </div>
+            </div >
         );
     }
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { gql, GraphQLClient } from 'graphql-request';
 import './CartelItemPage.css';
+import Loading from '../utility/Loading';
 
 export default function CartelItemPage() {
     const [state, setState] = useState({});
@@ -41,22 +42,22 @@ export default function CartelItemPage() {
     const purchaseItem = (item) => {
         console.log("purchase:", item);
     };
-    let content;
+    let content = <Loading />;
 
     if (state.cartelItem) {
         let hasUri = state.cartelItem && state.cartelItem.thumbnail && state.cartelItem.thumbnail.url;
         content = (
             <div style={{ textAlign: "center" }} className='cartel-item-page-inner-container'>
-                {state.cartelItem.name && <h1>{state.cartelItem.name}</h1>}
-                {hasUri && <img src={state.cartelItem.thumbnail.url} style={{ width: "60vw" }} />}
+                {state.cartelItem.name && <text style={{ display: "block", fontSize: "x-large", fontStyle: "bold", paddingBottom: "3vh", paddingTop: "2vh" }}>{state.cartelItem.name}</text>}
+                {hasUri && <img src={state.cartelItem.thumbnail.url} style={{ width: "80%" }} />}
 
-                {state.cartelItem.description && <h3 style={{ width: "80vw" }}>{state.cartelItem.description}</h3>}
+                <div style={{ display: "block" }}>
+                    {state.cartelItem.description && <h3>{state.cartelItem.description}</h3>}
 
-                <div style={{ display: "block", width: "80vw" }}>
                     <h2 >Price: ${state.cartelItem.baseItemPrice}</h2>
                     <button onClick={() => purchaseItem(state.cartelItem.name)}>Purchase</button>
                 </div>
-            </div>
+            </div >
         );
     }
 

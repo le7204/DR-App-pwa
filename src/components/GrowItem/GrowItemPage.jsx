@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { gql, GraphQLClient } from 'graphql-request';
 import './GrowItemPage.css';
+import Loading from '../utility/Loading';
 
 export default function GrowItemPage() {
     const [state, setState] = useState({});
@@ -46,7 +47,7 @@ export default function GrowItemPage() {
     const purchaseItem = (item) => {
         console.log("purchase:", item);
     };
-    let content;
+    let content = <Loading />;
 
     if (state.growItem) {
         let hasUri = state.growItem && state.growItem.thumbnail && state.growItem.thumbnail.url;

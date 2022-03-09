@@ -20,7 +20,7 @@ export default function SalesItemPage() {
           dailyMaintenanceCost
           description
           effects
-          growthRateReduction
+          salesthRateReduction
           isSinglePurchase
           minimumHousingRank
           minimumNotoriety
@@ -47,22 +47,24 @@ export default function SalesItemPage() {
         console.log("purchase:", item);
     };
     let content = <Loading />;
+
     if (state.salesItem) {
         let hasUri = state.salesItem && state.salesItem.thumbnail && state.salesItem.thumbnail.url;
         content = (
             <div style={{ textAlign: "center" }} className='sales-item-page-inner-container'>
-                {state.salesItem.name && <h1>{state.salesItem.name}</h1>}
-                {hasUri && <img src={state.salesItem.thumbnail.url} style={{ width: "60vw" }} />}
+                {state.salesItem.name && <text style={{ display: "block", fontSize: "x-large", fontStyle: "bold", paddingBottom: "3vh", paddingTop: "2vh" }}>{state.salesItem.name}</text>}
+                {hasUri && <img src={state.salesItem.thumbnail.url} style={{ width: "80%" }} />}
 
-                {state.salesItem.description && <h3 style={{ width: "80vw" }}>{state.salesItem.description}</h3>}
+                <div style={{ display: "block" }}>
+                    {state.salesItem.description && <h3>{state.salesItem.description}</h3>}
 
-                <div style={{ display: "block", width: "80vw" }}>
                     <h2 >Price: ${state.salesItem.baseItemPrice}</h2>
                     <button onClick={() => purchaseItem(state.salesItem.name)}>Purchase</button>
                 </div>
-            </div>
+            </div >
         );
     }
+
 
     return (
 
