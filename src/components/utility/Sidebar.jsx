@@ -1,9 +1,11 @@
 import React, { Component, useEffect, useState } from 'react';
 import { gql, GraphQLClient } from 'graphql-request';
 import './Sidebar.css';
+import { useNavigate } from 'react-router';
 
 const Sidebar = (props) => {
     const [state, setState] = useState({});
+    const nav = useNavigate();
     useEffect(() => {
         const url = "https://api-us-east-1.graphcms.com/v2/ckug8eplp925x01zedvmx1k2t/master";
         const client = new GraphQLClient(url, {
@@ -26,6 +28,10 @@ const Sidebar = (props) => {
             console.error('call to cms for crew items failed:', err);
         }
     }, []);
+    async function nagivate(name) {
+        props.arrowClick();
+        nav(name);
+    }
 
     return (props.open ? (
         <div className='sidebar-open'>
@@ -36,10 +42,10 @@ const Sidebar = (props) => {
             })} */}
             {state.itemCategories && state.itemCategories.map((element, i) => {
                 console.log(element);
-                return <button key={"category " + i} className='nav-button'>{element.name}</button>;
+                return <button key={"category " + i} className='nav-button' onClick={() => nagivate(element.name)} > {element.name}</button>;
             })
             }
-        </div>
+        </div >
     ) :
         (
             <div className='sidebar-closed'>

@@ -16,8 +16,8 @@ import DefenseItemsList from "./components/Defense/DefenseItemsList";
 import DefenseItemPage from "./components/Defense/DefenseItemPage";
 import HousingItemsList from "./components/Housing/HousingItemsList";
 import HousingItemPage from "./components/Housing/HousingItemPage";
-import CrewItemsList from "./components/Crew/CrewItemsList";
-import CrewItemPage from "./components/Crew/CrewItemPage";
+import CrewItemsList from "./components/Cartel/CartelItemsList";
+import CartelItemPage from "./components/Cartel/CartelItemPage";
 
 const App = () => {
 	const [state, setState] = useState({
@@ -40,7 +40,7 @@ const App = () => {
 				<Routes>
 					<Route path='/' element={<Splash />} />
 					<Route
-						path='growitems'
+						path='GROW'
 						element={<GrowItemsList />}
 					/>
 					<Route
@@ -48,7 +48,7 @@ const App = () => {
 						element={<GrowItemPage />}
 					/>
 					<Route
-						path='salesitems'
+						path='SALES'
 						element={<SalesItemsList />}
 					/>
 
@@ -58,7 +58,7 @@ const App = () => {
 					/>
 
 					<Route
-						path='prestigeitems'
+						path='PRESTIGE'
 						element={<PrestigeItemsList />}
 					/>
 					<Route
@@ -66,7 +66,7 @@ const App = () => {
 						element={<PrestigeItemPage />}
 					/>
 					<Route
-						path='offenseitems'
+						path='OFFENSE'
 						element={<OffenseItemsList />}
 					/>
 					<Route
@@ -74,7 +74,7 @@ const App = () => {
 						element={<OffenseItemPage />}
 					/>
 					<Route
-						path='defenseitems'
+						path='DEFENSE'
 						element={<DefenseItemsList />}
 					/>
 					<Route
@@ -82,7 +82,7 @@ const App = () => {
 						element={<DefenseItemPage />}
 					/>
 					<Route
-						path='housingitems'
+						path='HOUSING'
 						element={<HousingItemsList />}
 					/>
 					<Route
@@ -90,12 +90,12 @@ const App = () => {
 						element={<HousingItemPage />}
 					/>
 					<Route
-						path='crewitems'
+						path='CARTEL'
 						element={<CrewItemsList />}
 					/>
 					<Route
-						path='/crewitem/:CrewItem'
-						element={<CrewItemPage />}
+						path='/cartelItem/:CartelItem'
+						element={<CartelItemPage />}
 					/>
 
 				</Routes>
