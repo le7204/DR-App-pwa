@@ -1,12 +1,13 @@
-import React, { Component, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { ui } from '../auth/firebase';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
 export const Splash = (props) => {
+    const nav = useNavigate();
     useEffect(() => {
         document.getElementById("side-bar-open-button").style.display = 'none';
-
         let uiConfig = {
             callbacks: {
                 signInSuccessWithAuthResult: function (authResult, redirectUrl) {
@@ -16,17 +17,18 @@ export const Splash = (props) => {
                     console.log("authResult", authResult);
                     // instance.userUID = authResult.user.uid;                    
                     props.setAppUser(authResult.user);
-                    document.getElementById("side-bar-open-button").style.display = 'inline-block';
 
+                    window.top.document.getElementById("side-bar-open-button").style.display = 'inline-block';
+                    nav('/PLAYER');
                     // instance.props.setAppUser({ uid: authResult.user.uid, displayName: authResult.user.displayName });
                     // user = authResult.user;
 
-                    return true;
+                    return false;
                 }
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-            signInFlow: 'popup',
-            // signInSuccessUrl: `PLAYER/${user}`,
+            signInFlow: 'redirect',
+            // signInSuccessUrl: `PLAYER/`,
             signInOptions: [
                 // Leave the lines as is for the providers you want to offer your users.
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,

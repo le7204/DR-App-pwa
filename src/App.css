@@ -5,11 +5,11 @@
 }
 .main-screen {
 	position: absolute;
-	top: 0px;
+	top: 15vh;
 	background-color: brown;
 	z-index: 1;
 	width: 100vw;
-	height: 100vh;
+	height: 85vh;
 	overflow-y: scroll;
 }
 
@@ -33,7 +33,6 @@
 /* Large Screens */
 @media screen and (min-width: 1001px) and (max-width: 2000px) {
 	div.panel-open {
-		z-index: 1;
 		transition: 500ms;
 		top: 0px;
 		left: 25vw;
@@ -44,7 +43,6 @@
 /* 4K Screens */
 @media screen and (min-width: 2001px) {
 	div.panel-open {
-		z-index: 1;
 		transition: 500ms;
 		top: 0px;
 		left: 22vw;

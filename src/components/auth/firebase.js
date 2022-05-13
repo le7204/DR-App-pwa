@@ -23,11 +23,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+export const fireStoreDb = app.firestore();
 // export const analytics = getAnalytics(app);
 
 // Initialize the FirebaseUI Widget using Firebase.
-export const db = app.firestore();
 const authorization = firebase.auth();
 export let ui = new auth.AuthUI(authorization);
 

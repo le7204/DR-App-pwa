@@ -1,10 +1,11 @@
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { useNavigate, Routes, Route } from "react-router-dom";
 import { Splash } from "./components/utility/Splash";
-import GrowItemsList from "./components/GrowItem/GrowItemsList";
+import Banner from "./components/utility/Banner";
 import Sidebar from "./components/utility/Sidebar";
 
-import React, { useState, useEffect } from "react";
+import GrowItemsList from "./components/GrowItem/GrowItemsList";
 import GrowItemPage from "./components/GrowItem/GrowItemPage";
 import SalesItemsList from "./components/Sales/SalesItemsList";
 import SalesItemPage from "./components/Sales/SalesItemPage";
@@ -38,39 +39,41 @@ const App = () => {
 	return (
 		<div className='app'>
 			<Sidebar open={state.leftPanel === "open"} arrowClick={arrowClick} />
+			<Banner user={state.user} />
 			<div className={state.leftPanel === "open" ? 'main-screen panel-open' : 'main-screen panel-closed'} >
 				{!state.user && <Splash setAppUser={setAppUser} />}
-				<Routes>
-					<Route path='/' element={<Splash setAppUser={setAppUser} />} />
-					<Route index element={<Splash setAppUser={setAppUser} />} />
-					<Route path='GROW' element={<GrowItemsList />} />
-					<Route path='/growitem/:GrowItem' element={<GrowItemPage />} />
+				{state.user &&
+					<Routes>
+						<Route path='/' element={<Splash setAppUser={setAppUser} />} />
+						<Route index element={<Splash setAppUser={setAppUser} />} />
+						<Route path='GROW' element={<GrowItemsList />} />
+						<Route path='/growitem/:GrowItem' element={<GrowItemPage />} />
 
-					<Route path='SALES' element={<SalesItemsList />} />
-					<Route path='/salesitem/:SalesItem' element={<SalesItemPage />} />
+						<Route path='SALES' element={<SalesItemsList />} />
+						<Route path='/salesitem/:SalesItem' element={<SalesItemPage />} />
 
-					<Route path='PRESTIGE' element={<PrestigeItemsList />} />
-					<Route path='/prestigeitem/:PrestigeItem' element={<PrestigeItemPage />} />
+						<Route path='PRESTIGE' element={<PrestigeItemsList />} />
+						<Route path='/prestigeitem/:PrestigeItem' element={<PrestigeItemPage />} />
 
-					<Route path='OFFENSE' element={<OffenseItemsList />} />
-					<Route path='/offenseitem/:OffenseItem' element={<OffenseItemPage />} />
+						<Route path='OFFENSE' element={<OffenseItemsList />} />
+						<Route path='/offenseitem/:OffenseItem' element={<OffenseItemPage />} />
 
-					<Route path='DEFENSE' element={<DefenseItemsList />} />
-					<Route path='/defenseitem/:DefenseItem' element={<DefenseItemPage />} />
+						<Route path='DEFENSE' element={<DefenseItemsList />} />
+						<Route path='/defenseitem/:DefenseItem' element={<DefenseItemPage />} />
 
-					<Route path='HOUSING' element={<HousingItemsList />} />
-					<Route path='/housingitem/:HousingItem' element={<HousingItemPage />} />
+						<Route path='HOUSING' element={<HousingItemsList />} />
+						<Route path='/housingitem/:HousingItem' element={<HousingItemPage />} />
 
-					<Route path='CARTEL' element={<CrewItemsList />} />
-					<Route path='/cartelItem/:CartelItem' element={<CartelItemPage />} />
+						<Route path='CARTEL' element={<CrewItemsList />} />
+						<Route path='/cartelItem/:CartelItem' element={<CartelItemPage />} />
 
-					<Route path='PLAYER' element={<PlayerMain />} />
-					{/* <Route path='/player/:playerId' element={<IndividualPlayerPage />} /> */}
+						<Route path='PLAYER' element={<PlayerMain user={state.user} />} />
+						{/* <Route path='/player/:playerId' element={<IndividualPlayerPage />} /> */}
 
 
-					<Route path='MAIL' element={<MailMain />} />
+						<Route path='MAIL' element={<MailMain />} />
 
-				</Routes>
+					</Routes>}
 			</div>
 		</div >
 	);
