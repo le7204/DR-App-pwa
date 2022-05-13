@@ -4,7 +4,7 @@ import { gql, GraphQLClient } from 'graphql-request';
 import ToggleButton from 'react-bootstrap/ToggleButtonGroup';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import Loading from '../utility/Loading';
-import "./GrowItemsList.css";
+import "../../ItemsList.css";
 import { useNavigate } from 'react-router';
 const GrowItemsList = () => {
   const [state, setState] = useState({
@@ -43,11 +43,20 @@ const GrowItemsList = () => {
     nav(`/growitem/${growItem}`);
   };
   return (
-    <div className="grow-item-list" style={{ height: '100vh' }}>
+    <div className="grow item-list" style={{ height: '100vh' }}>
       {!state.growItems && <Loading />}
       {state.growItems && state.growItems.map((element, i) => {
         // console.log(element)
-        return <button key={"item" + i} onClick={() => navigate(element.name)}><img style={{ height: "50%" }} src={element.thumbnail.url} /><div><text>{element.name}</text></div></button >;
+        return (
+          <div key={"item" + i} className='grow list-button-container'>
+            <button onClick={() => navigate(element.name)}>
+              <img className='grow list-button-image' style={{ height: "50%", width: "50%" }} src={element.thumbnail.url} />
+              <div className="grow list-button-text-container">
+                <text className='grow list-button-text'>{element.name}</text>
+              </div>
+            </button >
+          </div>
+        );
       })
       }
     </div >

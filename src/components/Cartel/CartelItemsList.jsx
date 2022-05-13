@@ -4,7 +4,6 @@ import { gql, GraphQLClient } from 'graphql-request';
 import ToggleButton from 'react-bootstrap/ToggleButtonGroup';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import Loading from '../utility/Loading';
-import "./CartelItemsList.css";
 import { useNavigate } from 'react-router';
 const CartelItemsList = () => {
   const [state, setState] = useState({
@@ -41,15 +40,25 @@ const CartelItemsList = () => {
     nav(`/cartelitem/${cartelItem}`);
   };
   return (
-    <div className="cartel-item-list" style={{ height: '100vh' }}>
+    <div className="cartel item-list" style={{ height: '100vh' }}>
       {!state.cartelItems && <Loading />}
       {state.cartelItems && state.cartelItems.map((element, i) => {
         // console.log(element)
-        return <button key={"item" + i} onClick={() => navigate(element.name)}><img style={{ height: "50%" }} src={element.thumbnail.url} /><div><text>{element.name}</text></div></button >;
+        return (
+          <div key={"item" + i} className='cartel list-button-container'>
+            <button onClick={() => navigate(element.name)}>
+              <img className='cartel list-button-image' style={{ height: "50%", width: "50%" }} src={element.thumbnail.url} />
+              <div className="cartel list-button-text-container">
+                <text className='cartel list-button-text'>{element.name}</text>
+              </div>
+            </button >
+          </div>
+        );
       })
       }
     </div >
   );
 };
+
 
 export default CartelItemsList;

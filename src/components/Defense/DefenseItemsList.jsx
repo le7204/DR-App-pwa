@@ -4,7 +4,6 @@ import { gql, GraphQLClient } from 'graphql-request';
 import ToggleButton from 'react-bootstrap/ToggleButtonGroup';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import Loading from '../utility/Loading';
-import "./DefenseItemsList.css";
 import { useNavigate } from 'react-router';
 const DefenseItemsList = () => {
   const [state, setState] = useState({
@@ -41,15 +40,25 @@ const DefenseItemsList = () => {
     nav(`/defenseitem/${defenseItem}`);
   };
   return (
-    <div className="defense-item-list" style={{ height: '100vh' }}>
+    <div className="defense item-list" style={{ height: '100vh' }}>
       {!state.defenseItems && <Loading />}
       {state.defenseItems && state.defenseItems.map((element, i) => {
         // console.log(element)
-        return <button key={"item" + i} onClick={() => navigate(element.name)}><img style={{ height: "50%" }} src={element.thumbnail.url} /><div><text>{element.name}</text></div></button >;
+        return (
+          <div key={"item" + i} className='defense list-button-container'>
+            <button onClick={() => navigate(element.name)}>
+              <img className='defense list-button-image' style={{ height: "50%", width: "50%" }} src={element.thumbnail.url} />
+              <div className="defense list-button-text-container">
+                <text className='defense list-button-text'>{element.name}</text>
+              </div>
+            </button >
+          </div>
+        );
       })
       }
     </div >
   );
 };
+
 
 export default DefenseItemsList;

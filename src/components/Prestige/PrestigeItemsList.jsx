@@ -4,7 +4,6 @@ import { gql, GraphQLClient } from 'graphql-request';
 import ToggleButton from 'react-bootstrap/ToggleButtonGroup';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import Loading from '../utility/Loading';
-import "./PrestigeItemsList.css";
 import { useNavigate } from 'react-router';
 const PrestigeItemsList = () => {
   const [state, setState] = useState({
@@ -43,11 +42,20 @@ const PrestigeItemsList = () => {
     nav(`/prestigeitem/${prestigeItem}`);
   };
   return (
-    <div className="prestige-item-list" style={{ height: '100vh' }}>
+    <div className="prestige item-list" style={{ height: '100vh' }}>
       {!state.prestigeItems && <Loading />}
       {state.prestigeItems && state.prestigeItems.map((element, i) => {
         // console.log(element)
-        return <button key={"item" + i} onClick={() => navigate(element.name)}><img style={{ height: "50%" }} src={element.thumbnail.url} /><div><text>{element.name}</text></div></button >;
+        return (
+          <div key={"item" + i} className='prestige list-button-container'>
+            <button onClick={() => navigate(element.name)}>
+              <img className='prestige list-button-image' style={{ height: "50%", width: "50%" }} src={element.thumbnail.url} />
+              <div className="prestige list-button-text-container">
+                <text className='prestige list-button-text'>{element.name}</text>
+              </div>
+            </button >
+          </div>
+        );
       })
       }
     </div >

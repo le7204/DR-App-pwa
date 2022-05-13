@@ -4,7 +4,6 @@ import { gql, GraphQLClient } from 'graphql-request';
 import ToggleButton from 'react-bootstrap/ToggleButtonGroup';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import Loading from '../utility/Loading';
-import "./HousingItemsList.css";
 import { useNavigate } from 'react-router';
 const HousingItemsList = () => {
   const [state, setState] = useState({
@@ -41,15 +40,25 @@ const HousingItemsList = () => {
     nav(`/housingitem/${housingItem}`);
   };
   return (
-    <div className="housing-item-list" style={{ height: '100vh' }}>
+    <div className="housing item-list" style={{ height: '100vh' }}>
       {!state.housingItems && <Loading />}
       {state.housingItems && state.housingItems.map((element, i) => {
         // console.log(element)
-        return <button key={"item" + i} onClick={() => navigate(element.name)}><img style={{ height: "50%" }} src={element.thumbnail.url} /><div><text>{element.name}</text></div></button >;
+        return (
+          <div key={"item" + i} className='housing list-button-container'>
+            <button onClick={() => navigate(element.name)}>
+              <img className='housing list-button-image' style={{ height: "50%", width: "50%" }} src={element.thumbnail.url} />
+              <div className="housing list-button-text-container">
+                <text className='housing list-button-text'>{element.name}</text>
+              </div>
+            </button >
+          </div>
+        );
       })
       }
     </div >
   );
 };
+
 
 export default HousingItemsList;

@@ -28,9 +28,13 @@ const Sidebar = (props) => {
             console.error('call to cms for crew items failed:', err);
         }
     }, []);
-    async function nagivate(name) {
-        props.arrowClick();
+    async function navigate(name) {
+        // props.arrowClick();
         nav(name);
+        //if the screen is less than 700px wide shrink sidebar
+        if (window.top.outerWidth < 700) {
+            props.arrowClick();
+        }
     }
 
     return (props.open ? (
@@ -39,14 +43,14 @@ const Sidebar = (props) => {
 
             {state.itemCategories && state.itemCategories.map((element, i) => {
                 console.log(element);
-                return <button key={"category " + i} className='nav-button' onClick={() => nagivate(element.name)} > {element.name}</button>;
+                return <button key={"category " + i} className='nav-button' onClick={() => navigate(element.name)} > {element.name}</button>;
             })
             }
         </div >
     ) :
         (
             <div className='sidebar-closed'>
-                <button onClick={props.arrowClick}> {'-->'} </button>
+                <button id='side-bar-open-button' onClick={props.arrowClick}> {'-->'} </button>
 
             </div >
         )

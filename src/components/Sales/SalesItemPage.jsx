@@ -20,7 +20,7 @@ export default function SalesItemPage() {
           dailyMaintenanceCost
           description
           effects
-          salesthRateReduction
+          growthRateReduction
           isSinglePurchase
           minimumHousingRank
           minimumNotoriety
@@ -28,7 +28,7 @@ export default function SalesItemPage() {
           minimumStreetCredit
           name
           ouncesPerHour
-          prchasePriceMultiplier
+          purchasePriceMultiplier
           specialRequirements
           thumbnail {
             url
@@ -42,7 +42,7 @@ export default function SalesItemPage() {
         } catch (err) {
             console.error('call to cms for itemsPage failed:', err);
         }
-    }, []);
+    }, [SalesItem]);
     const purchaseItem = (item) => {
         console.log("purchase:", item);
     };
