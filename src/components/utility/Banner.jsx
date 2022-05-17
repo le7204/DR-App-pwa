@@ -6,7 +6,7 @@ const Banner = (props) => {
         return (
             <div className="banner" >
                 <div className='user-details'>
-                    <p>BANNER</p>
+                    {/* <p>{props.user.name}</p> */}
                 </div>
             </div>);
     } else return <div className="banner" />;

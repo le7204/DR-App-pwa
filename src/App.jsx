@@ -22,15 +22,39 @@ import CartelItemPage from "./components/Cartel/CartelItemPage";
 import PlayerMain from "./components/Players/PlayerMain";
 import MailMain from "./components/Mail/MailMain";
 
+
+import { fireStoreDb } from './components/auth/firebase';
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+
 const App = () => {
 	const [state, setState] = useState({
 		leftPanel: "closed",
 		user: false
 	});
+	const [playerData, setPlayerData] = useState({ selected: false });
 	const setAppUser = (newUser) => {
-		setState({ ...state, user: newUser.multiFactor.user });
-	};
+		let authUser = newUser.multiFactor.user;
+		setState({ ...state, user: authUser });
 
+		const playerQuery = query(collection(fireStoreDb, "users"), where("UID", "==", authUser.uid));
+		const userObserver = onSnapshot(playerQuery, (querySnapshot) => {
+			console.log(querySnapshot);
+			let characters = [];
+			querySnapshot.forEach((doc) => {
+				characters.push(doc.data());
+			});
+			console.log("characters:", characters);
+			if (characters.length > 1) {
+				console.error("TOO Many users returned");
+			} else {
+				let data = characters[0];
+				setPlayerData({ ...playerData, full: data });
+			}
+		});
+	};
+	const setSelectedCharacterNumber = (characterNumber) => {
+
+	};
 	const arrowClick = () => {
 		if (state.leftPanel === "open")
 			setState({ ...state, leftPanel: "closed" });
@@ -39,7 +63,7 @@ const App = () => {
 	return (
 		<div className='app'>
 			<Sidebar open={state.leftPanel === "open"} arrowClick={arrowClick} />
-			<Banner user={state.user} />
+			<Banner playerData={playerData} />
 			<div className={state.leftPanel === "open" ? 'main-screen panel-open' : 'main-screen panel-closed'} >
 				{!state.user && <Splash setAppUser={setAppUser} />}
 				{state.user &&
@@ -67,7 +91,7 @@ const App = () => {
 						<Route path='CARTEL' element={<CrewItemsList />} />
 						<Route path='/cartelItem/:CartelItem' element={<CartelItemPage />} />
 
-						<Route path='PLAYER' element={<PlayerMain user={state.user} />} />
+						<Route path='PLAYER' element={<PlayerMain playerName={state.user.name} setSelectedCharacterNumber={setSelectedCharacterNumber} playerData={playerData} />} />
 						{/* <Route path='/player/:playerId' element={<IndividualPlayerPage />} /> */}
 
 

@@ -9,8 +9,9 @@
 	background-color: brown;
 	z-index: 1;
 	width: 100vw;
-	height: 85vh;
+	min-height: 85vh;
 	overflow-y: scroll;
+	overflow-x: clip;
 }
 
 /* Mobile Screens */
