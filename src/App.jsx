@@ -34,7 +34,11 @@ const App = () => {
 	const [playerData, setPlayerData] = useState({ selected: false });
 	const setAppUser = (newUser) => {
 		let authUser = newUser.multiFactor.user;
-		setState({ ...state, user: authUser });
+		let newState = { ...state, user: authUser };
+		if (window.top.outerWidth > 700) {
+			newState.leftPanel = "open";
+		}
+		setState(newState);
 
 		const playerQuery = query(collection(fireStoreDb, "users"), where("UID", "==", authUser.uid));
 		const userObserver = onSnapshot(playerQuery, (querySnapshot) => {
@@ -48,13 +52,17 @@ const App = () => {
 				console.error("TOO Many users returned");
 			} else {
 				let data = characters[0];
-				setPlayerData({ ...playerData, full: data });
+				initialPlayerDataLoad(data);
 			}
 		});
+	};
+	function initialPlayerDataLoad(data) {
+		setPlayerData({ ...playerData, full: data, selected: data.char1 ? data.char1 : false });
 	};
 	const setSelectedCharacter = (char) => {
 		console.log("set selected char:", char);
 		setPlayerData({ ...playerData, selected: char });
+
 	};
 	const arrowClick = () => {
 		if (state.leftPanel === "open")
@@ -63,43 +71,43 @@ const App = () => {
 	};
 	return (
 		<div className='app'>
-			<Sidebar open={state.leftPanel === "open"} arrowClick={arrowClick} />
-			{state.user && <Banner selectedChar={playerData.selected} user={state.user} />}
-			<div className={state.leftPanel === "open" ? 'main-screen panel-open' : 'main-screen panel-closed'} >
-				{!state.user ? <Splash setAppUser={setAppUser} />
-					:
-					<Routes>
-						<Route path='/' element={<Splash setAppUser={setAppUser} />} />
-						<Route index element={<Splash setAppUser={setAppUser} />} />
-						<Route path='GROW' element={<GrowItemsList />} />
-						<Route path='/growitem/:GrowItem' element={<GrowItemPage />} />
+			{state.user && <Sidebar open={state.leftPanel === "open"} arrowClick={arrowClick} />}
+			<div className={state.leftPanel === "open" ? "right-panel panel-open" : "right-panel"} >
+				{state.user && <Banner selectedChar={playerData.selected} user={state.user} />}
+				< div className={state.leftPanel === "open" ? 'main-screen panel-open' : 'main-screen panel-closed'} >
+					{!state.user ? <Splash setAppUser={setAppUser} />
+						:
+						<Routes>
+							<Route path='GROW' element={<GrowItemsList />} />
+							<Route path='/growitem/:GrowItem' element={<GrowItemPage />} />
 
-						<Route path='SALES' element={<SalesItemsList />} />
-						<Route path='/salesitem/:SalesItem' element={<SalesItemPage />} />
+							<Route path='SALES' element={<SalesItemsList />} />
+							<Route path='/salesitem/:SalesItem' element={<SalesItemPage />} />
 
-						<Route path='PRESTIGE' element={<PrestigeItemsList />} />
-						<Route path='/prestigeitem/:PrestigeItem' element={<PrestigeItemPage />} />
+							<Route path='PRESTIGE' element={<PrestigeItemsList />} />
+							<Route path='/prestigeitem/:PrestigeItem' element={<PrestigeItemPage />} />
 
-						<Route path='OFFENSE' element={<OffenseItemsList />} />
-						<Route path='/offenseitem/:OffenseItem' element={<OffenseItemPage />} />
+							<Route path='OFFENSE' element={<OffenseItemsList />} />
+							<Route path='/offenseitem/:OffenseItem' element={<OffenseItemPage />} />
 
-						<Route path='DEFENSE' element={<DefenseItemsList />} />
-						<Route path='/defenseitem/:DefenseItem' element={<DefenseItemPage />} />
+							<Route path='DEFENSE' element={<DefenseItemsList />} />
+							<Route path='/defenseitem/:DefenseItem' element={<DefenseItemPage />} />
 
-						<Route path='HOUSING' element={<HousingItemsList />} />
-						<Route path='/housingitem/:HousingItem' element={<HousingItemPage />} />
+							<Route path='HOUSING' element={<HousingItemsList />} />
+							<Route path='/housingitem/:HousingItem' element={<HousingItemPage />} />
 
-						<Route path='CARTEL' element={<CrewItemsList />} />
-						<Route path='/cartelItem/:CartelItem' element={<CartelItemPage />} />
+							<Route path='CARTEL' element={<CrewItemsList />} />
+							<Route path='/cartelItem/:CartelItem' element={<CartelItemPage />} />
 
-						<Route path='PLAYER' element={<PlayerMain playerName={state.user.name} setSelectedCharacter={setSelectedCharacter} playerData={playerData} />} />
-						{/* <Route path='/player/:playerId' element={<IndividualPlayerPage />} /> */}
+							<Route path='PLAYER' element={<PlayerMain setSelectedCharacter={setSelectedCharacter} playerData={playerData} />} />
+							{/* <Route path='/player/:playerId' element={<IndividualPlayerPage />} /> */}
 
 
-						<Route path='MAIL' element={<MailMain />} />
+							<Route path='MAIL' element={<MailMain />} />
 
-					</Routes>
-				}
+						</Routes>
+					}
+				</div>
 			</div>
 		</div >
 	);

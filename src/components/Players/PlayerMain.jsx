@@ -32,7 +32,6 @@ const PlayerMain = (props) => {
                 );
             }
         }
-
     } else {//they need to make their first one
         content = (
             <div><button>Create Your First Character!</button></div>

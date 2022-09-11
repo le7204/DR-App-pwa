@@ -50,7 +50,7 @@ const Sidebar = (props) => {
     ) :
         (
             <div className='sidebar-closed'>
-                <button id='side-bar-open-button' onClick={props.arrowClick}> {'N\na\nv\n>'} </button>
+                <button id='side-bar-open-button' onClick={props.arrowClick}> {'N\na\nv\ni\ng\na\nt\ne\n>'} </button>
 
             </div >
         )

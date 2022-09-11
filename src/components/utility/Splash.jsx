@@ -8,7 +8,7 @@ import './Splash.css';
 export const Splash = (props) => {
     const nav = useNavigate();
     useEffect(() => {
-        document.getElementById("side-bar-open-button").style.display = 'none';
+        // document.getElementById("side-bar-open-button").style.display = 'none';
         let uiConfig = {
             callbacks: {
                 signInSuccessWithAuthResult: function (authResult, redirectUrl) {
