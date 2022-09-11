@@ -68,7 +68,7 @@ export default function SalesItemPage() {
 
     return (
 
-        <div className='sales-item-page-container'>
+        <div className='sales-item-page-container item-page'>
             {content}
         </div>
     );

@@ -40,14 +40,14 @@ const OffenseItemsList = () => {
     nav(`/offenseitem/${offenseItem}`);
   };
   return (
-    <div className="offense item-list" style={{ height: '100vh' }}>
+    <div className="offense item-list">
       {!state.offenseItems && <Loading />}
       {state.offenseItems && state.offenseItems.map((element, i) => {
         // console.log(element)
         return (
           <div key={"item" + i} className='offense list-button-container'>
             <button onClick={() => navigate(element.name)}>
-              <img className='offense list-button-image' style={{ height: "50%", width: "50%" }} src={element.thumbnail.url} />
+              <img className='offense list-button-image' style={{ width: "90%" }} src={element.thumbnail.url} />
               <div className="offense list-button-text-container">
                 <text className='offense list-button-text'>{element.name}</text>
               </div>

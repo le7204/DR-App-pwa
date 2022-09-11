@@ -8,14 +8,13 @@
 	background-color: white;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	transition: 800ms;
 	z-index: 5;
 }
 .sidebar-closed {
 	z-index: 5;
-	transition: 800ms;
 	top: 0px;
 	position: sticky;
+	width: 8vw;
 }
 .sidebar-open button:first-child {
 	width: 100%;
@@ -34,10 +33,11 @@
 }
 
 .sidebar-closed button {
-	min-width: 60px;
-	/* width: 100%; */
+	width: 8vw;
+	height: 10vh;
 	background-color: darkblue;
 	color: aliceblue;
+	border-radius:6px;
 }
 
 /* Mobile Screens */

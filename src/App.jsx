@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Splash } from "./components/utility/Splash";
@@ -52,8 +52,9 @@ const App = () => {
 			}
 		});
 	};
-	const setSelectedCharacterNumber = (characterNumber) => {
-
+	const setSelectedCharacter = (char) => {
+		console.log("set selected char:", char);
+		setPlayerData({ ...playerData, selected: char });
 	};
 	const arrowClick = () => {
 		if (state.leftPanel === "open")
@@ -63,10 +64,10 @@ const App = () => {
 	return (
 		<div className='app'>
 			<Sidebar open={state.leftPanel === "open"} arrowClick={arrowClick} />
-			<Banner playerData={playerData} />
+			{state.user && <Banner selectedChar={playerData.selected} user={state.user} />}
 			<div className={state.leftPanel === "open" ? 'main-screen panel-open' : 'main-screen panel-closed'} >
-				{!state.user && <Splash setAppUser={setAppUser} />}
-				{state.user &&
+				{!state.user ? <Splash setAppUser={setAppUser} />
+					:
 					<Routes>
 						<Route path='/' element={<Splash setAppUser={setAppUser} />} />
 						<Route index element={<Splash setAppUser={setAppUser} />} />
@@ -91,13 +92,14 @@ const App = () => {
 						<Route path='CARTEL' element={<CrewItemsList />} />
 						<Route path='/cartelItem/:CartelItem' element={<CartelItemPage />} />
 
-						<Route path='PLAYER' element={<PlayerMain playerName={state.user.name} setSelectedCharacterNumber={setSelectedCharacterNumber} playerData={playerData} />} />
+						<Route path='PLAYER' element={<PlayerMain playerName={state.user.name} setSelectedCharacter={setSelectedCharacter} playerData={playerData} />} />
 						{/* <Route path='/player/:playerId' element={<IndividualPlayerPage />} /> */}
 
 
 						<Route path='MAIL' element={<MailMain />} />
 
-					</Routes>}
+					</Routes>
+				}
 			</div>
 		</div >
 	);

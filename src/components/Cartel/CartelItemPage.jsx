@@ -64,7 +64,7 @@ export default function CartelItemPage() {
 
     return (
 
-        <div className='cartel-item-page-container'>
+        <div className='cartel-item-page-container item-page'>
             {content}
         </div>
     );

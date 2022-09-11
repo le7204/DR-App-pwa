@@ -68,7 +68,7 @@ export default function PrestigeItemPage() {
 
     return (
 
-        <div className='prestige-item-page-container'>
+        <div className='prestige-item-page-container item-page'>
             {content}
         </div>
     );

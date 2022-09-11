@@ -69,7 +69,7 @@ export default function GrowItemPage() {
 
     return (
 
-        <div className='grow-item-page-container'>
+        <div className='grow-item-page-container item-page'>
             {content}
         </div>
     );

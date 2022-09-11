@@ -64,7 +64,7 @@ export default function DefenseItemPage() {
 
     return (
 
-        <div className='defense-item-page-container'>
+        <div className='defense-item-page-container item-page'>
             {content}
         </div>
     );

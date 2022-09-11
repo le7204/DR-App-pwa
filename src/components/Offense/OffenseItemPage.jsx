@@ -64,7 +64,7 @@ export default function OffenseItemPage() {
 
     return (
 
-        <div className='offense-item-page-container'>
+        <div className='offense-item-page-container item-page'>
             {content}
         </div>
     );

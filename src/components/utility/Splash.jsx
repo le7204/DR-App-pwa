@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ui } from '../auth/firebase';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import './Splash.css';
 
 export const Splash = (props) => {
     const nav = useNavigate();

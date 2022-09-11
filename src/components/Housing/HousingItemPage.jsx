@@ -70,7 +70,7 @@ export default function HousingItemPage() {
 
     return (
 
-        <div className='housing-item-page-container'>
+        <div className='housing-item-page-container item-page'>
             {content}
         </div>
     );

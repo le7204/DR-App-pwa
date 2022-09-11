@@ -21,7 +21,7 @@ const Sidebar = (props) => {
           }`;
         try {
             client.request(getitemCategories).then((data) => {
-                console.log(data.itemCategories);
+                // console.log(data.itemCategories);
                 setState({ itemCategories: [...data.itemCategories], loaded: true });
             });
         } catch (err) {
@@ -42,7 +42,7 @@ const Sidebar = (props) => {
             <button onClick={props.arrowClick}> {'<--'} </button>
 
             {state.itemCategories && state.itemCategories.map((element, i) => {
-                console.log(element);
+                // console.log(element);
                 return <button key={"category " + i} className='nav-button' onClick={() => navigate(element.name)} > {element.name}</button>;
             })
             }
@@ -50,7 +50,7 @@ const Sidebar = (props) => {
     ) :
         (
             <div className='sidebar-closed'>
-                <button id='side-bar-open-button' onClick={props.arrowClick}> {'-->'} </button>
+                <button id='side-bar-open-button' onClick={props.arrowClick}> {'N\na\nv\n>'} </button>
 
             </div >
         )
