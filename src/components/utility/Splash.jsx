@@ -19,7 +19,11 @@ export const Splash = (props) => {
                     // instance.userUID = authResult.user.uid;                    
                     props.setAppUser(authResult.user);
 
-                    window.top.document.getElementById("side-bar-open-button").style.display = 'inline-block';
+                    try {
+                        window.top.document.getElementById("side-bar-open-button").style.display = 'inline-block';
+                    } catch (e) {
+                        console.log(e);
+                    }
                     nav('/PLAYER');
                     // instance.props.setAppUser({ uid: authResult.user.uid, displayName: authResult.user.displayName });
                     // user = authResult.user;
